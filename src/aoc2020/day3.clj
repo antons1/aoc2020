@@ -5,18 +5,12 @@
   {:grid grid :x 0 :y 0 :trees 0})
 
 (defn position [x y {:keys [grid]}]
-  (-> grid (nth y) (nth x)))
-
-(defn next-x [to-inc {:keys [grid x]}]
-  "Get next x index, wrapping if increase out of bounds"
-  (let [max-x (count (first grid))
-        new-x (+ x to-inc)]
-    (mod new-x max-x)))
+  (-> grid (nth y) (cycle) (nth x)))
 
 (defn count-trees [inc-x inc-y grid-data]
   (let [max-y (count (:grid grid-data))]
-    (loop [{:keys [y] :as gr} grid-data]
-      (let [new-x (next-x inc-x gr)
+    (loop [{:keys [x y] :as gr} grid-data]
+      (let [new-x (+ x inc-x)
             new-y (+ y inc-y)]
         (if (>= new-y max-y)
           gr
@@ -40,6 +34,6 @@
       (map #(:trees %))
       (apply *)) ; Part 2
 
+  (nth (cycle "abc") 5)
 
-  (slopes {:a "b" :c "d"} [[4 1] [5 1]])
-  (next-x {:grid ["abc"] :x 0} 13))
+  (slopes {:a "b" :c "d"} [[4 1] [5 1]]))
