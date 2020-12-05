@@ -50,15 +50,16 @@
 
 (comment
   (->> (inp->map (inp/read-input "day4.txt" #"\n\n"))
-       (filter #(contains-passport-keys? %))
-       (count)) ;Part 1
+       (filter contains-passport-keys?)
+       count) ;Part 1
 
   (->> (inp->map (inp/read-input "day4.txt" #"\n\n"))
-       (filter #(valid-passport? %))
-       (count)) ;Part 2
+       (filter valid-passport?)
+       count) ;Part 2
 
   (valid-passport? {:pid "087499704" :hgt "74in" :ecl "grn" :iyr "2012" :eyr "2030" :byr "1980" :hcl "#623a2f"})
   (valid-height? "150cm")
   (re-find #"#[1-9a-f]{6}$" "#fffff")
   (re-find #"^(amb|blu|brn|gry|grn|hzl|oth)$" "brg")
   (re-find #"^\d{9}$" "999999999"))
+
