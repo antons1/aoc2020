@@ -6,3 +6,4 @@
 * [day 4](src/aoc2020/day4.clj) ([input](resources/day4.txt))
 * [day 5](src/aoc2020/day5.clj) ([input](resources/day5.txt))
 * [day 6](src/aoc2020/day6.clj) ([input](resources/day6.txt))
+* [day 7](src/aoc2020/day7.clj) ([input](resources/day7.txt))
