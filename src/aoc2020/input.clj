@@ -11,4 +11,4 @@
        (s/split delimiter))))
 
 (defn strings->numbers [list]
-  (map #(read-string %) list))
+  (map #(Integer/parseInt %) list))
