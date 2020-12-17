@@ -26,7 +26,12 @@
   ([[x y z w] space]
    (get-neighbours x y z w space))
   ([x y z w space]
-   (map (fn [coords] ((apply coords->keyword coords) space)) (filter #(not= % [x y z w]) (c/cartesian-product [(- x 1) x (+ x 1)] [(- y 1) y (+ y 1)] [(- z 1) z (+ z 1)] [(- w 1) w (+ w 1)])))))
+   (map (fn [coords] ((apply coords->keyword coords) space))
+        (filter #(not= % [x y z w])
+                (c/cartesian-product [(- x 1) x (+ x 1)]
+                                     [(- y 1) y (+ y 1)]
+                                     [(- z 1) z (+ z 1)]
+                                     [(- w 1) w (+ w 1)])))))
 
 (defn new-value [kwcoords space value]
   (let [neighbours (get-neighbours (keyword->coords kwcoords) space)
@@ -47,16 +52,14 @@
                (map (fn [kwcoords] (into {} {kwcoords (new-value kwcoords space (kwcoords space))})))
                (apply merge))})
 
-
+(defn run-n-times [n fun state]
+  (loop [state' state
+         x 0]
+    (if (= x n) state' (recur (fun state') (inc x)))))
 
 (comment
-  (->> (input "day17.txt")
-       update-map
-       update-map
-       update-map
-       update-map
-       update-map
-       update-map
+  (->> (input "test/day17.txt")
+       (run-n-times 6 update-map)
        :space
        vals
        (filter #(= % \#))
