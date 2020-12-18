@@ -17,3 +17,4 @@
 * [day 15](src/aoc2020/day15.clj) (Input inline)
 * [day 16](src/aoc2020/day16.clj) ([input](resources/day16.txt))
 * [day 17](src/aoc2020/day17.clj) ([input](resources/day17.txt))
+* [day 18](src/aoc2020/day18.clj) ([input](resources/day18.txt))
